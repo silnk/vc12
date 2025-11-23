@@ -60,7 +60,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            gap: 1mm;
+            gap: 0mm;
             margin: 20px 0;
             background: white;
             padding: 20px;
@@ -71,8 +71,8 @@
             margin-right: auto;
         }
         .photo-cell {
-            width: 5.1cm;
-            height: 7.1cm;
+            width: 5.25cm;
+            height: 9.9cm;
             border: 2px dashed #ccc;
             overflow: hidden;
             display: flex;
@@ -206,7 +206,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            gap: 1mm;
+            gap: 0mm;
             padding: 20px;
             background: #f0f0f0;
             border-radius: 8px;
@@ -263,19 +263,19 @@
             
             <div class="layout-preview">
                 <div class="layout-diagram">
-                    <div class="layout-cell">Photo 1<br>51×71mm</div>
-                    <div class="layout-cell">Photo 2<br>51×71mm</div>
-                    <div class="layout-cell">Photo 3<br>51×71mm</div>
-                    <div class="layout-cell">Photo 4<br>51×71mm</div>
-                    <div class="layout-cell">Photo 5<br>51×71mm</div>
-                    <div class="layout-cell">Photo 6<br>51×71mm</div>
-                    <div class="layout-cell">Photo 7<br>51×71mm</div>
-                    <div class="layout-cell">Photo 8<br>51×71mm</div>
-                    <div class="layout-cell">Photo 9<br>51×71mm</div>
-                    <div class="layout-cell">Photo 10<br>51×71mm</div>
-                    <div class="layout-cell">Photo 11<br>51×71mm</div>
-                    <div class="layout-cell">Photo 12<br>51×71mm</div>
-                    <div class="layout-label">4 columns × 3 rows layout with 1mm gaps</div>
+                    <div class="layout-cell">Photo 1<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 2<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 3<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 4<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 5<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 6<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 7<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 8<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 9<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 10<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 11<br>52.5×99mm</div>
+                    <div class="layout-cell">Photo 12<br>52.5×99mm</div>
+                    <div class="layout-label">4 columns × 3 rows layout with no gaps</div>
                 </div>
             </div>
             
@@ -284,11 +284,11 @@
             </div>
             
             <div class="dimensions-info">
-                Each photo: 51mm × 71mm with 1mm gaps between photos
+                Each photo: 52.5mm × 99mm with no gaps between photos
             </div>
             
             <div class="size-info">
-                Total dimensions: 205mm × 215mm (51×4 + 3mm gap, 71×3 + 2mm gap) | Centered on A4 paper
+                Total dimensions: 210mm × 297mm (52.5×4, 99×3) | Perfect fit on A4 paper
             </div>
             
             <div class="cutting-guide">
@@ -517,18 +517,19 @@
             const pdfHeight = pdf.internal.pageSize.getHeight(); // 297mm
             
             // Set dimensions for 4x3 grid
-            const photoWidth = 51; // 51mm
-            const photoHeight = 71; // 71mm
+            const photoWidth = 52.5; // 52.5mm
+            const photoHeight = 99; // 99mm
             
-            // Calculate margins and gaps
-            const horizontalGap = 1; // 1mm gap between columns
-            const verticalGap = 1; // 1mm gap between rows
+            // No gaps between photos
+            const horizontalGap = 0;
+            const verticalGap = 0;
             
             const totalGridWidth = (4 * photoWidth) + (3 * horizontalGap);
             const totalGridHeight = (3 * photoHeight) + (2 * verticalGap);
             
-            const horizontalMargin = (pdfWidth - totalGridWidth) / 2; // Center horizontally
-            const verticalMargin = (pdfHeight - totalGridHeight) / 2; // Center vertically
+            // Since we're using exact A4 dimensions, no margins needed
+            const horizontalMargin = 0;
+            const verticalMargin = 0;
 
             // Track loaded images
             let imagesLoaded = 0;
@@ -536,7 +537,7 @@
 
             // Function to add images to PDF
             function addImagesToPDF() {
-                // Add all 12 photos in a perfectly centered 4x3 grid
+                // Add all 12 photos in a perfectly aligned 4x3 grid
                 let cellIndex = 0;
                 for (let row = 0; row < 3; row++) {
                     for (let col = 0; col < 4; col++) {
@@ -560,7 +561,7 @@
                 }
                 
                 // Save the PDF
-                pdf.save('photos-12-51x71-portrait.pdf');
+                pdf.save('photos-12-52.5x99-portrait.pdf');
                 status.textContent = 'PDF generated successfully! Check your downloads folder.';
             }
 
